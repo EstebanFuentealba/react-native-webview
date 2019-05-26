@@ -113,6 +113,13 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
     );
   };
 
+  clearCookies = () => {
+    UIManager.dispatchViewManagerCommand(
+      this.getWebViewHandle(),
+      this.getCommands().clearCookies,
+      null,
+    );
+  };
   /**
    * Injects a javascript string into the referenced WebView. Deliberately does not
    * return a response because using eval() to return a response breaks this method
@@ -245,8 +252,8 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
 
     const webViewStyles = [styles.container, styles.webView, style];
     if (
-      this.state.viewState === 'LOADING'
-      || this.state.viewState === 'ERROR'
+      this.state.viewState === 'LOADING' ||
+      this.state.viewState === 'ERROR'
     ) {
       // if we're in either LOADING or ERROR states, don't show the webView
       webViewStyles.push(styles.hidden);
@@ -262,8 +269,8 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
       }
     }
 
-    const NativeWebView
-      = (nativeConfig.component as typeof NativeWebViewAndroid) || RNCWebView;
+    const NativeWebView =
+      (nativeConfig.component as typeof NativeWebViewAndroid) || RNCWebView;
 
     const onShouldStartLoadWithRequest = createOnShouldStartLoadWithRequest(
       this.onShouldStartLoadWithRequestCallback,

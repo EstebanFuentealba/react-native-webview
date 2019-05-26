@@ -18,6 +18,7 @@ export interface WebViewCommands {
   postMessage: Function;
   injectJavaScript: Function;
   loadUrl: Function;
+  clearCookies: Function;
 }
 
 export interface CustomUIManager extends UIManagerStatic {
@@ -123,7 +124,9 @@ export interface WebViewError extends WebViewNativeEvent {
 
 export type WebViewEvent = NativeSyntheticEvent<WebViewNativeEvent>;
 
-export type WebViewProgressEvent = NativeSyntheticEvent<WebViewNativeProgressEvent>;
+export type WebViewProgressEvent = NativeSyntheticEvent<
+  WebViewNativeProgressEvent
+>;
 
 export type WebViewNavigationEvent = NativeSyntheticEvent<WebViewNavigation>;
 
@@ -131,8 +134,8 @@ export type WebViewMessageEvent = NativeSyntheticEvent<WebViewMessage>;
 
 export type WebViewErrorEvent = NativeSyntheticEvent<WebViewError>;
 
-export type DataDetectorTypes
-  = | 'phoneNumber'
+export type DataDetectorTypes =
+  | 'phoneNumber'
   | 'link'
   | 'address'
   | 'calendarEvent'
